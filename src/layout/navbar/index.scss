@@ -1,4 +1,4 @@
-@mixin nav-item($color, $isSwitchView: false) {
+@mixin nav-item($color, $isSwitchView: false, $fontsize: 14px) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,16 +12,22 @@
   }
 
   color: $color;
-  font-size: 14px;
+  font-size: $fontsize;
   font-weight: 700;
 }
 
-@mixin nav($color, $active, $hasBorder: false, $isSwitchView: false) {
+@mixin nav(
+  $color,
+  $active,
+  $hasBorder: false,
+  $isSwitchView: false,
+  $fontsize: 14px
+) {
   > .nav {
     height: var(--navbar-min-height);
 
     > .nav-item {
-      @include nav-item($color, $isSwitchView);
+      @include nav-item($color, $isSwitchView, $fontsize);
 
       @if $hasBorder {
         &.active {
@@ -56,13 +62,15 @@
     @include nav(
       var(--navbar-color-inactive),
       var(--navbar-color-active),
-      true
+      true,
+      false,
+      14px
     );
   }
 
   > .switch-view-nav {
     background-color: var(--navbar-switch-view-background-color);
 
-    @include nav(var(--navbar-color-inactive), var(--app-button), false, true);
+    @include nav(var(--app-dark-gray), var(--app-button), false, true, 10px);
   }
 }

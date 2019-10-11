@@ -14,6 +14,12 @@ export default class RouteComponent extends Component {
         component: HotPage
       },
       {
+        id: "homepage",
+        exact: true,
+        path: "/hot",
+        component: HotPage
+      },
+      {
         id: "toppage",
         exact: false,
         path: "/top",

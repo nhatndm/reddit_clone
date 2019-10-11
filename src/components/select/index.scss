@@ -1,0 +1,69 @@
+@mixin svg {
+  > svg {
+    margin-right: 5px;
+    fill: var(--app-navbar-text-color);
+  }
+}
+
+.select-component {
+  background-color: var(--app-white);
+  display: inline-flex;
+  height: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .list-wrapper {
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    background-color: var(--app-white);
+    border: 1px solid var(--app-brown-white);
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    min-width: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .select-item {
+    border-bottom: 1px solid var(--app-brown-white);
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    color: var(--app-dark-gray);
+    font-size: 14px;
+
+    &.default {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @include svg;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      color: var(--app-dark-gray);
+
+      @include svg;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  > .select-component-title {
+    margin: 0px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: var(--app-dark-gray);
+  }
+}
