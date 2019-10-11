@@ -1,0 +1,68 @@
+@mixin nav-item($color, $isSwitchView: false) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @if $isSwitchView {
+    padding-left: 5px;
+    padding-right: 5px;
+  } @else {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  color: $color;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+@mixin nav($color, $active, $hasBorder: false, $isSwitchView: false) {
+  > .nav {
+    height: var(--navbar-min-height);
+
+    > .nav-item {
+      @include nav-item($color, $isSwitchView);
+
+      @if $hasBorder {
+        &.active {
+          color: $active;
+          border-bottom: 3px solid var(--navbar-color-active);
+        }
+      } @else {
+        &.active {
+          color: $active;
+
+          @if $isSwitchView {
+            > svg {
+              fill: $active;
+            }
+          }
+        }
+      }
+
+      @if $isSwitchView {
+        > svg {
+          fill: var(--app-buttonAlpha);
+        }
+      }
+    }
+  }
+}
+
+.subreddit-navbar {
+  > .nav-menu {
+    background-color: var(--navbar-background-color);
+
+    @include nav(
+      var(--navbar-color-inactive),
+      var(--navbar-color-active),
+      true
+    );
+  }
+
+  > .switch-view-nav {
+    background-color: var(--navbar-switch-view-background-color);
+
+    @include nav(var(--navbar-color-inactive), var(--app-button), false, true);
+  }
+}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Navbar from "../navbar/";
 import "./index.scss";
 
 export default class Header extends Component {
@@ -11,6 +12,7 @@ export default class Header extends Component {
             <div className="title">r/DotA2</div>
           </div>
         </div>
+        <Navbar />
       </div>
     );
   }

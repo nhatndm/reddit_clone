@@ -1,1 +1,16 @@
 @import "~bootstrap/scss/bootstrap.scss";
+
+:root {
+  --navbar-min-height: 40px;
+  --app-background-color: #dae0e6;
+  --navbar-color-inactive: #775292;
+  --navbar-color-active: #b7a052;
+  --navbar-background-color: #eee8f2;
+  --navbar-switch-view-background-color: #ffffff;
+  --app-button: #ab912b;
+  --app-buttonAlpha: rgba(171, 145, 43, 0.2);
+}
+
+body {
+  background-color: var(--app-background-color);
+}
