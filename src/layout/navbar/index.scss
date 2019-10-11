@@ -49,6 +49,10 @@
       @if $isSwitchView {
         > svg {
           fill: var(--app-buttonAlpha);
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }

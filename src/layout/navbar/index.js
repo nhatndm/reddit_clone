@@ -8,6 +8,7 @@ import { ReactComponent as NewSvg } from "../../assest/new.svg";
 import { connect } from "react-redux";
 import { find } from "lodash";
 import Select from "../../components/select";
+import { CARDVIEW, CLASSICVIEW, COMPACTVIEW } from "../../redux/app/type";
 
 import "./index.scss";
 
@@ -52,12 +53,23 @@ class Navbar extends Component {
     this.setState({ defaultPage: v });
   };
 
+  handleChangeView = view_mode => e => {
+    const { changeView } = this.props;
+    changeView(view_mode);
+  };
+
   render() {
     const { pages, defaultPage } = this.state;
+    const { view_mode } = this.props;
+
     return (
       <div className="subreddit-navbar">
         <div className="nav-menu">
-          <ul className="container nav">
+          <ul
+            className={`${
+              view_mode === CARDVIEW ? "container" : "container-fluid"
+            } nav`}
+          >
             <li className="nav-item active">Posts</li>
             <li className="nav-item">New to Dota 2</li>
             <li className="nav-item">Read the FAQ</li>
@@ -66,16 +78,42 @@ class Navbar extends Component {
         </div>
 
         <div className="switch-view-nav">
-          <ul className="container nav">
+          <ul
+            className={`${
+              view_mode === CARDVIEW ? "container" : "container-fluid"
+            } nav`}
+          >
             <li className="nav-item title">VIEW</li>
-            <li className="nav-item active">
-              <CardViewSvg height={20} width={20} />
+            <li
+              className={`nav-item ${view_mode === CARDVIEW ? "active" : ""}`}
+            >
+              <CardViewSvg
+                height={20}
+                width={20}
+                onClick={this.handleChangeView(CARDVIEW)}
+              />
             </li>
-            <li className="nav-item">
-              <ClassicViewSvg height={20} width={20} />
+            <li
+              className={`nav-item ${
+                view_mode === CLASSICVIEW ? "active" : ""
+              }`}
+            >
+              <ClassicViewSvg
+                height={20}
+                width={20}
+                onClick={this.handleChangeView(CLASSICVIEW)}
+              />
             </li>
-            <li className="nav-item">
-              <CompactViewSvg height={20} width={20} />
+            <li
+              className={`nav-item ${
+                view_mode === COMPACTVIEW ? "active" : ""
+              }`}
+            >
+              <CompactViewSvg
+                height={20}
+                width={20}
+                onClick={this.handleChangeView(COMPACTVIEW)}
+              />
             </li>
             <li>
               <Select
@@ -95,11 +133,18 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
-    router: state.router
+    router: state.router,
+    view_mode: state.app.view_mode
+  };
+};
+
+const mapDispatchToProps = ({ app: { changeView } }) => {
+  return {
+    changeView: view_mode => changeView(view_mode)
   };
 };
 
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(Navbar);
