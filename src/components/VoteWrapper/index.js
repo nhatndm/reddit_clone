@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ReactComponent as VoteDown } from "../../assest/arrow-pointing-down.svg";
 import { ReactComponent as VoteUp } from "../../assest/arrow-up.svg";
 import { ReactComponent as DotIcon } from "../../assest/circle.svg";
+import { coverToKNumber } from "../../helper/number";
 
 import "./index.scss";
 
@@ -18,7 +19,7 @@ export default class VoteWrapper extends Component {
         {numberOfVote === 0 ? (
           <DotIcon className="icon-5" />
         ) : (
-          <p className="upvote-number">20</p>
+          <p className="upvote-number">{coverToKNumber(numberOfVote)}</p>
         )}
         <VoteDown className="icon-16" />
       </div>

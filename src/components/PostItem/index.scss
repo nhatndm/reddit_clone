@@ -4,6 +4,7 @@
   height: 200px;
   padding-left: 0px;
   padding-right: 0px;
+  border: 1px solid var(--app-silver);
 
   &.compact-view {
     height: 50px;
@@ -21,5 +22,10 @@
 
   .title-content-wrapper {
     width: calc(100% - 40px);
+  }
+
+  &:hover {
+    border: 1px solid var(--app-black);
+    cursor: pointer;
   }
 }

@@ -1,26 +1,18 @@
 import React, { Component } from "react";
-import { CardView, ClassicView, CompactView } from "../../components/View";
-
 import { connect } from "react-redux";
-import { CLASSICVIEW, COMPACTVIEW, CARDVIEW } from "../../redux/app/type";
+import PostItem from "../../components/PostItem";
+import { CARDVIEW } from "../../redux/app/type";
 import "./index.scss";
 
+const Posts = ({ dataSource, viewMode }) => {
+  return dataSource.map(v => (
+    <PostItem key={v.data.name} viewMode={viewMode} item={v} />
+  ));
+};
+
 class DotaPage extends Component {
-  handleRenderContent() {
-    const { viewMode } = this.props;
-
-    switch (viewMode) {
-      case COMPACTVIEW:
-        return <CompactView />;
-      case CLASSICVIEW:
-        return <ClassicView />;
-      default:
-        return <CardView />;
-    }
-  }
-
   render() {
-    const { viewMode } = this.props;
+    const { viewMode, posts } = this.props;
 
     return (
       <div
@@ -28,7 +20,7 @@ class DotaPage extends Component {
           viewMode === CARDVIEW ? "container" : "container-fluid"
         }`}
       >
-        {this.handleRenderContent()}
+        <Posts dataSource={posts} viewMode={viewMode} />
       </div>
     );
   }
@@ -36,6 +28,7 @@ class DotaPage extends Component {
 
 const mapStateToProps = state => {
   return {
+    posts: state.post.posts,
     viewMode: state.app.viewMode
   };
 };
