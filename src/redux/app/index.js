@@ -3,7 +3,7 @@ import { changeView } from "./action";
 
 export default {
   state: {
-    view_mode: CARDVIEW
+    viewMode: CARDVIEW
   },
   reducers: {
     changeView

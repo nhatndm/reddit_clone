@@ -53,21 +53,21 @@ class Navbar extends Component {
     this.setState({ defaultPage: v });
   };
 
-  handleChangeView = view_mode => e => {
+  handleChangeView = viewMode => e => {
     const { changeView } = this.props;
-    changeView(view_mode);
+    changeView(viewMode);
   };
 
   render() {
     const { pages, defaultPage } = this.state;
-    const { view_mode } = this.props;
+    const { viewMode } = this.props;
 
     return (
       <div className="subreddit-navbar">
         <div className="nav-menu">
           <ul
             className={`${
-              view_mode === CARDVIEW ? "container" : "container-fluid"
+              viewMode === CARDVIEW ? "container" : "container-fluid"
             } nav`}
           >
             <li className="nav-item active">Posts</li>
@@ -80,13 +80,11 @@ class Navbar extends Component {
         <div className="switch-view-nav">
           <ul
             className={`${
-              view_mode === CARDVIEW ? "container" : "container-fluid"
+              viewMode === CARDVIEW ? "container" : "container-fluid"
             } nav`}
           >
             <li className="nav-item title">VIEW</li>
-            <li
-              className={`nav-item ${view_mode === CARDVIEW ? "active" : ""}`}
-            >
+            <li className={`nav-item ${viewMode === CARDVIEW ? "active" : ""}`}>
               <CardViewSvg
                 height={20}
                 width={20}
@@ -94,9 +92,7 @@ class Navbar extends Component {
               />
             </li>
             <li
-              className={`nav-item ${
-                view_mode === CLASSICVIEW ? "active" : ""
-              }`}
+              className={`nav-item ${viewMode === CLASSICVIEW ? "active" : ""}`}
             >
               <ClassicViewSvg
                 height={20}
@@ -105,9 +101,7 @@ class Navbar extends Component {
               />
             </li>
             <li
-              className={`nav-item ${
-                view_mode === COMPACTVIEW ? "active" : ""
-              }`}
+              className={`nav-item ${viewMode === COMPACTVIEW ? "active" : ""}`}
             >
               <CompactViewSvg
                 height={20}
@@ -134,13 +128,13 @@ class Navbar extends Component {
 const mapStateToProps = state => {
   return {
     router: state.router,
-    view_mode: state.app.view_mode
+    viewMode: state.app.viewMode
   };
 };
 
 const mapDispatchToProps = ({ app: { changeView } }) => {
   return {
-    changeView: view_mode => changeView(view_mode)
+    changeView: viewMode => changeView(viewMode)
   };
 };
 

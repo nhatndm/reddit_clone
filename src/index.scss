@@ -13,8 +13,25 @@
   --app-brown-white: #dae0e6;
   --app-navbar-text-color: #b7a052;
   --app-dark-gray: #7d7d7d;
+  --app-dark-white: #f8f9fa;
+  --app-silver: #868a8c;
+  --app-black: #1b1b1c;
 }
 
 body {
   background-color: var(--app-background-color);
+}
+
+.icon-16 {
+  height: 16px;
+  width: 16px;
+}
+
+.icon-5 {
+  height: 5px;
+  width: 5px;
+}
+
+svg:hover {
+  cursor: pointer;
 }

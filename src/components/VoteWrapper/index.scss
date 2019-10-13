@@ -1,0 +1,41 @@
+.vote-wrapper {
+  background-color: var(--app-dark-white);
+  display: flex;
+
+  &.width-40 {
+    width: 40px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    > .upvote-number,
+    > .icon-5 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      fill: var(--app-black);
+    }
+  }
+
+  &.width-90 {
+    width: 90px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 10px 0px 10px;
+
+    > .icon-5 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      fill: var(--app-black);
+    }
+  }
+
+  > .upvote-number {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 0px;
+  }
+
+  > svg {
+    fill: var(--app-silver);
+  }
+}
