@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import DotaPage from "../../page/dota";
+import DotaPage from "../../Page/Dota";
 import { Switch, Route } from "react-router-dom";
 import withPost from "../../hoc/withPostHoc";
 

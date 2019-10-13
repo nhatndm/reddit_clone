@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import Header from "./layout/header";
-import RouteComponent from "./layout/route";
-import Navbar from "./layout/navbar";
+import Header from "./layout/Header";
+import RouteComponent from "./layout/Route";
+import Navbar from "./layout/Navbar";
 
 export default class App extends Component {
   render() {

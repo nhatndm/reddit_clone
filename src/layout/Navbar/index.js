@@ -7,7 +7,7 @@ import { ReactComponent as HotSvg } from "../../assest/hot.svg";
 import { ReactComponent as NewSvg } from "../../assest/new.svg";
 import { connect } from "react-redux";
 import { find } from "lodash";
-import Select from "../../components/select";
+import Select from "../../components/SelectBox";
 import { CARDVIEW, CLASSICVIEW, COMPACTVIEW } from "../../redux/app/type";
 
 import "./index.scss";
