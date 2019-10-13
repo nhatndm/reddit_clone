@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import HotPage from "../../page/hot";
-import TopPage from "../../page/top";
-import NewPage from "../../page/new";
+import DotaPage from "../../page/dota";
 import { Switch, Route } from "react-router-dom";
+import withPost from "../../hoc/withPostHoc";
 
 export default class RouteComponent extends Component {
   state = {
@@ -11,25 +10,29 @@ export default class RouteComponent extends Component {
         id: "homepage",
         exact: true,
         path: "/",
-        component: HotPage
+        prefix: "hot",
+        component: DotaPage
       },
       {
         id: "homepage",
         exact: true,
         path: "/hot",
-        component: HotPage
+        prefix: "hot",
+        component: DotaPage
       },
       {
         id: "toppage",
         exact: false,
         path: "/top",
-        component: TopPage
+        prefix: "top",
+        component: DotaPage
       },
       {
         id: "newpage",
         exact: false,
         path: "/new",
-        component: NewPage
+        prefix: "new",
+        component: DotaPage
       }
     ]
   };
@@ -43,7 +46,7 @@ export default class RouteComponent extends Component {
             key={v.id}
             exact={v.exact}
             path={v.path}
-            component={v.component}
+            component={withPost(v.component, v.prefix)}
           ></Route>
         ))}
       </Switch>

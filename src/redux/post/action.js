@@ -2,7 +2,16 @@ import axios from "axios";
 import httpMethod from "../../constant/httpMethod";
 import { fetchPostApi } from "../../constant/api";
 
-export function savePost(state, posts) {
+let currentPrefix = "";
+
+export function savePost(state, posts, isSamePrefix) {
+  if (isSamePrefix) {
+    return {
+      ...state,
+      posts: state.posts.concat(posts)
+    };
+  }
+
   return {
     ...state,
     posts: posts
@@ -15,5 +24,10 @@ export async function fetchPosts(prefix, after) {
     url: fetchPostApi(prefix, after)
   });
 
-  this.savePost(response.data.data.children);
+  if (prefix !== currentPrefix) {
+    currentPrefix = prefix;
+    return this.savePost(response.data.data.children, false);
+  }
+
+  return this.savePost(response.data.data.children, true);
 }
