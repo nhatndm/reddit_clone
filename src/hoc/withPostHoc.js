@@ -3,25 +3,41 @@ import { connect } from "react-redux";
 
 function withPost(Comp, prefix) {
   return class extends Component {
-    componentDidMount() {
-      this.props.fetchPosts(prefix);
+    constructor(props) {
+      super(props);
+      this.loadMore = this.loadMore.bind(this);
     }
+
+    componentDidMount() {
+      this.props.fetchPosts({ prefix: prefix });
+    }
+
+    loadMore() {
+      const { loadMore, after } = this.props;
+      loadMore({ prefix: prefix, after: after });
+    }
+
     render() {
-      const { posts } = this.props;
-      return <Comp dataSource={posts} />;
+      const { posts, viewMode } = this.props;
+      return (
+        <Comp dataSource={posts} viewMode={viewMode} loadMore={this.loadMore} />
+      );
     }
   };
 }
 
 const mapStateToProps = state => {
   return {
-    posts: state.post.posts
+    posts: state.post.posts,
+    viewMode: state.app.viewMode,
+    after: state.post.after
   };
 };
 
-const mapDispatchToProps = ({ post: { fetchPosts } }) => {
+const mapDispatchToProps = ({ post: { fetchPosts, loadMore } }) => {
   return {
-    fetchPosts: (prefix, after) => fetchPosts(prefix, after)
+    fetchPosts: payload => fetchPosts(payload),
+    loadMore: payload => loadMore(payload)
   };
 };
 

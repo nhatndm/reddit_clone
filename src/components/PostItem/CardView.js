@@ -17,11 +17,13 @@ export default ({ item: { data } }) => {
       return <VideoComp url={data.media.reddit_video.fallback_url} />;
     }
 
-    if (data.media_embed.content) {
-      return <CoverToHtml html={data.media_embed.content} video />;
-    }
+    // if (Object.keys(data.media_embed).length > 0) {
+    //   return <CoverToHtml html={data.media_embed.content} video />;
+    // }
 
-    return <CoverToHtml html={data.selftext_html} />;
+    // return <CoverToHtml html={data.selftext_html} />;
+
+    return null;
   };
 
   const renderClassForSelfText = data => {

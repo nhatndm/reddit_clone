@@ -1,13 +1,15 @@
-import { savePost, fetchPosts } from "./action";
+import { savePost, fetchPosts, loadMore } from "./action";
 
 export default {
   state: {
-    posts: []
+    posts: [],
+    after: ""
   },
   reducers: {
     savePost
   },
   effects: {
-    fetchPosts
+    fetchPosts,
+    loadMore
   }
 };

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import PostItem from "../../components/PostItem";
 import { CARDVIEW } from "../../redux/app/type";
 import "./index.scss";
+import InfiniteScroll from "../../components/InfiniteScroll";
 
 const Posts = ({ dataSource, viewMode }) => {
   return dataSource.map(v => (
@@ -10,30 +10,29 @@ const Posts = ({ dataSource, viewMode }) => {
   ));
 };
 
-class DotaPage extends Component {
-  render() {
-    const { viewMode, posts } = this.props;
+export default class DotaPage extends Component {
+  constructor(props) {
+    super(props);
+    this.handleAction = this.handleAction.bind(this);
+  }
 
+  handleAction() {
+    const { loadMore } = this.props;
+    return loadMore();
+  }
+
+  render() {
+    const { viewMode, dataSource } = this.props;
     return (
-      <div
-        className={`dota-page ${
-          viewMode === CARDVIEW ? "container" : "container-fluid"
-        }`}
-      >
-        <Posts dataSource={posts} viewMode={viewMode} />
-      </div>
+      <InfiniteScroll action={this.handleAction}>
+        <div
+          className={`dota-page ${
+            viewMode === CARDVIEW ? "container" : "container-fluid"
+          }`}
+        >
+          <Posts dataSource={dataSource} viewMode={viewMode} />
+        </div>
+      </InfiniteScroll>
     );
   }
 }
-
-const mapStateToProps = state => {
-  return {
-    posts: state.post.posts,
-    viewMode: state.app.viewMode
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(DotaPage);

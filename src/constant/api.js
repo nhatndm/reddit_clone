@@ -1,2 +1,2 @@
-export const fetchPostApi = (prefix, after) =>
-  `https://www.reddit.com/r/DotA2/${prefix}.json?limit=10&&after=${after}`;
+export const fetchPostUrl = (prefix, after) =>
+  `https://www.reddit.com/r/DotA2/${prefix}.json?limit=50&&after=${after}`;

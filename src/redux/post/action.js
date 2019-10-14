@@ -1,33 +1,49 @@
 import axios from "axios";
 import httpMethod from "../../constant/httpMethod";
-import { fetchPostApi } from "../../constant/api";
+import { fetchPostUrl } from "../../constant/api";
+import { last } from "lodash";
 
-let currentPrefix = "";
-
-export function savePost(state, posts, isSamePrefix) {
-  if (isSamePrefix) {
+export function savePost(state, { posts, after, isLoadmore }) {
+  if (isLoadmore) {
     return {
       ...state,
-      posts: state.posts.concat(posts)
+      posts: state.posts.concat(posts),
+      after: after
     };
   }
 
   return {
     ...state,
-    posts: posts
+    posts: posts,
+    after: after
   };
 }
 
-export async function fetchPosts(prefix, after) {
+const responseObject = (posts, after, isLoadmore) => {
+  return {
+    posts: posts,
+    after: after,
+    isLoadmore: isLoadmore
+  };
+};
+
+async function fetchPostApi(prefix, after) {
   const response = await axios({
     method: httpMethod.GET,
-    url: fetchPostApi(prefix, after)
+    url: fetchPostUrl(prefix, after)
   });
 
-  if (prefix !== currentPrefix) {
-    currentPrefix = prefix;
-    return this.savePost(response.data.data.children, false);
-  }
+  return response.data.data.children;
+}
 
-  return this.savePost(response.data.data.children, true);
+export async function fetchPosts({ prefix, after }) {
+  const data = await fetchPostApi(prefix, after);
+
+  return this.savePost(responseObject(data, last(data).data.name, false));
+}
+
+export async function loadMore({ prefix, after }) {
+  const data = await fetchPostApi(prefix, after);
+
+  return this.savePost(responseObject(data, last(data).data.name, true));
 }
