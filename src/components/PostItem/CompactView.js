@@ -1,9 +1,8 @@
 import React from "react";
 import { durration } from "../../helper/date";
-import { ReactComponent as ChatIcon } from "../../assest/chat.svg";
 import { fromUnixTime } from "date-fns";
 import { Tag } from "../Tag";
-import { coverToKNumber } from "../../helper/number";
+import { CommentWrapperCompact } from "./CommentWrapper";
 
 export default ({ item: { data } }) => {
   return (
@@ -17,12 +16,7 @@ export default ({ item: { data } }) => {
         {durration(new Date(fromUnixTime(data.created_utc)))}
       </div>
 
-      <div className="comment-wrapper compact-view">
-        <ChatIcon className="icon-16" />
-        <span className="comment-label">
-          {coverToKNumber(data.num_comments)}
-        </span>
-      </div>
+      <CommentWrapperCompact data={data} />
     </div>
   );
 };

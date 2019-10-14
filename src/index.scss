@@ -38,3 +38,14 @@ body {
 svg:hover {
   cursor: pointer;
 }
+
+.md {
+  font-family: Noto Sans, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  word-break: break-word;
+  overflow: auto;
+  padding-bottom: 1px;
+  margin-bottom: -1;
+}

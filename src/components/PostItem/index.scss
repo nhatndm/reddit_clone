@@ -17,14 +17,15 @@
   }
 
   &.card-view {
-    max-height: 400px;
+    max-height: 500px;
+    overflow: hidden;
     min-height: 100px;
     height: auto;
   }
 
   .title-content-wrapper {
     width: calc(100% - 40px);
-    padding: 5px 0px 5px 10px;
+    padding: 10px;
     position: relative;
 
     > .post-title {
@@ -36,6 +37,10 @@
 
       &.classic-view {
         font-size: 16px;
+      }
+
+      &.card-view {
+        font-size: 18px;
       }
     }
 
@@ -70,7 +75,7 @@
         width: 60px;
       }
 
-      &.classic-view {
+      &.classic-card-view {
         padding-top: 5px;
       }
 

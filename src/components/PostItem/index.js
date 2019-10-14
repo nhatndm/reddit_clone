@@ -4,14 +4,7 @@ import VoteWrapper from "../VoteWrapper";
 import { CLASSICVIEW, COMPACTVIEW } from "../../redux/app/type";
 import RightContentForCompact from "./CompactView";
 import RightContentForClassic from "./ClassicView";
-
-// const RightContentForClassic = ({ item }) => {
-//   return <div className="title-content-wrapper">Test</div>;
-// };
-
-const RightContentForCard = ({ item }) => {
-  return <div className="title-content-wrapper">Test</div>;
-};
+import RightContentForCard from "./CardView";
 
 const ContentWrapper = ({ item, viewMode }) => {
   switch (viewMode) {
