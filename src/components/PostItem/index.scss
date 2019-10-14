@@ -7,11 +7,13 @@
   border: 1px solid var(--app-silver);
 
   &.compact-view {
-    height: 50px;
+    min-height: 50px;
+    height: auto;
   }
 
   &.classic-view {
-    height: 80px;
+    min-height: 80px;
+    height: auto;
   }
 
   &.card-view {
@@ -22,6 +24,80 @@
 
   .title-content-wrapper {
     width: calc(100% - 40px);
+    padding: 5px 0px 5px 10px;
+    position: relative;
+
+    > .post-title {
+      font-weight: 500;
+
+      &.compact-view {
+        font-size: 14px;
+      }
+
+      &.classic-view {
+        font-size: 16px;
+      }
+    }
+
+    > .author-time-wrapper {
+      color: var(--app-author);
+      font-size: 12px;
+      font-weight: 400;
+
+      > .author {
+        margin-right: 5px;
+      }
+    }
+    // &.compact-view {
+    //   font-size: 12px;
+    //   font-weight: 400;
+    // }
+
+    > .author {
+      margin-right: 5px;
+    }
+
+    > .comment-wrapper {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--app-dark-silver);
+
+      &.compact-view {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 20px;
+        width: 60px;
+      }
+
+      &.classic-view {
+        padding-top: 5px;
+      }
+
+      > .group-action {
+        display: inline;
+        margin-right: 10px;
+        padding: 5px;
+
+        > svg {
+          &.award-icon {
+            margin-right: 2px;
+          }
+
+          &.share-icon {
+            margin-top: -2px;
+          }
+        }
+
+        &:hover {
+          background-color: var(--app-tag);
+        }
+      }
+
+      svg {
+        margin-right: 5px;
+      }
+    }
   }
 
   &:hover {

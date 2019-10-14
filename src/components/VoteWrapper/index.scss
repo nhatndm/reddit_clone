@@ -1,6 +1,7 @@
 .vote-wrapper {
   background-color: var(--app-dark-white);
   display: flex;
+  border-right: 1px solid var(--app-silver);
 
   &.width-40 {
     width: 40px;
@@ -36,6 +37,6 @@
   }
 
   > svg {
-    fill: var(--app-silver);
+    fill: var(--app-dark-silver);
   }
 }

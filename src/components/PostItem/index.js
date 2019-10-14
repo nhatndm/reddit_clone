@@ -2,6 +2,27 @@ import React, { Component } from "react";
 import "./index.scss";
 import VoteWrapper from "../VoteWrapper";
 import { CLASSICVIEW, COMPACTVIEW } from "../../redux/app/type";
+import RightContentForCompact from "./CompactView";
+import RightContentForClassic from "./ClassicView";
+
+// const RightContentForClassic = ({ item }) => {
+//   return <div className="title-content-wrapper">Test</div>;
+// };
+
+const RightContentForCard = ({ item }) => {
+  return <div className="title-content-wrapper">Test</div>;
+};
+
+const ContentWrapper = ({ item, viewMode }) => {
+  switch (viewMode) {
+    case CLASSICVIEW:
+      return <RightContentForClassic item={item} />;
+    case COMPACTVIEW:
+      return <RightContentForCompact item={item} />;
+    default:
+      return <RightContentForCard item={item} />;
+  }
+};
 
 export default class PostItem extends Component {
   changeClassNameFollowViewMode(viewMode) {
@@ -27,7 +48,7 @@ export default class PostItem extends Component {
           isWidth90={viewMode === COMPACTVIEW}
           numberOfVote={item.data.score}
         />
-        <div className="title-content-wrapper">Test</div>
+        <ContentWrapper viewMode={viewMode} item={item} />
       </div>
     );
   }
