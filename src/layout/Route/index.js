@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import DotaPage from "../../Page/Dota";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import withPost from "../../hoc/withPostHoc";
 
 export default class RouteComponent extends Component {
   state = {
     routes: [
-      {
-        id: "homepage",
-        exact: true,
-        path: "/",
-        prefix: "hot",
-        component: DotaPage
-      },
       {
         id: "homepage",
         exact: true,
@@ -49,6 +42,7 @@ export default class RouteComponent extends Component {
             component={withPost(v.component, v.prefix)}
           ></Route>
         ))}
+        <Route exact path="/" render={() => <Redirect to="/hot" />} />
       </Switch>
     );
   }

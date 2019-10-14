@@ -49,6 +49,16 @@ class Navbar extends Component {
     this.setState({ defaultPage: object });
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const { pages } = this.state;
+    const { router } = nextProps;
+    const currentPath = router.location.pathname;
+    const object = find(pages, v => v.value === currentPath);
+    if (Object.keys(this.state.defaultPage).length === 0) {
+      this.setState({ defaultPage: object });
+    }
+  }
+
   handleOnClickItem = v => {
     this.setState({ defaultPage: v });
   };
