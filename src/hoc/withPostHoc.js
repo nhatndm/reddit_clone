@@ -5,14 +5,14 @@ function withPost(Comp, prefix) {
   return class extends Component {
     constructor(props) {
       super(props);
-      this.loadMore = this.loadMore.bind(this);
+      this.handleLoadMode = this.handleLoadMode.bind(this);
     }
 
     componentDidMount() {
       this.props.fetchPosts({ prefix: prefix });
     }
 
-    loadMore() {
+    handleLoadMode() {
       const { loadMore, after } = this.props;
       loadMore({ prefix: prefix, after: after });
     }
@@ -20,7 +20,11 @@ function withPost(Comp, prefix) {
     render() {
       const { posts, viewMode } = this.props;
       return (
-        <Comp dataSource={posts} viewMode={viewMode} loadMore={this.loadMore} />
+        <Comp
+          dataSource={posts}
+          viewMode={viewMode}
+          loadMore={this.handleLoadMode}
+        />
       );
     }
   };

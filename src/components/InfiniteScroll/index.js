@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loading from "../Loading";
 
 export default class InfiniteScroll extends Component {
   constructor(props) {
@@ -25,11 +26,19 @@ export default class InfiniteScroll extends Component {
 
   async asyncAction() {
     await this.setState({ isLoading: true });
-    await setTimeout(() => this.props.action(), 2000);
-    await this.setState({ isLoading: false });
+    await this.props.action();
+    setTimeout(() => this.setState({ isLoading: false }), 1000);
   }
 
   render() {
-    return <div>{this.props.children}</div>;
+    const {
+      state: { isLoading },
+      props: { children }
+    } = this;
+    return (
+      <div>
+        {children} <Loading isLoading={isLoading} />
+      </div>
+    );
   }
 }
