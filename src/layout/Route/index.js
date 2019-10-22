@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DotaPage from "../../Page/Dota";
+import CommendPage from "../../Page/Commend";
 import { Switch, Route, Redirect } from "react-router-dom";
 import withPost from "../../hoc/withPostHoc";
 
@@ -42,6 +43,7 @@ export default class RouteComponent extends Component {
             component={withPost(v.component, v.prefix)}
           ></Route>
         ))}
+        <Route path="/commend" component={CommendPage} />
         <Route exact path="/" render={() => <Redirect to="/hot" />} />
       </Switch>
     );

@@ -8,7 +8,7 @@ export default class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Navbar />
+        {/* <Navbar /> */}
         <RouteComponent />
       </Fragment>
     );
